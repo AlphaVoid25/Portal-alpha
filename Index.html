@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Alpha - Mutación</title>
+    <style>
+        body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    </style>
+</head>
+<body>
+
+    <img id="medusa-portada" src="" alt="Cargando mutación...">
+
+    <script>
+        // CONFIGURACIÓN DE ADMINISTRADORA
+        const TOTAL_IMAGENES = 1000;
+        const NOMBRE_BASE = "mutacion_"; // Tus fotos se llamarán mutacion_1.jpg, mutacion_2.jpg...
+
+        // LÓGICA DEL CONTADOR (Usando localStorage para esta fase de prueba)
+        let contador = localStorage.getItem('escaneos') || 0;
+        contador = parseInt(contador) + 1;
+        
+        // Si llega a 1000, se queda en la última o reinicia (vos decidís)
+        if (contador > TOTAL_IMAGENES) contador = TOTAL_IMAGENES; 
+
+        localStorage.setItem('escaneos', contador);
+
+        // MOSTRAR LA IMAGEN CORRESPONDIENTE
+        const imagenUrl = `imagenes/${NOMBRE_BASE}${contador}.jpg`;
+        document.getElementById('medusa-portada').src = imagenUrl;
+
+        console.log("Escaneo número: " + contador);
+    </script>
+</body>
+</html>
